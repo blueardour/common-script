@@ -1,0 +1,21 @@
+
+#Tools
+deluge
+
+# install
+sudo apt-get install deluge deluged deluge-console
+
+# start the backend server
+deluged
+
+# start the frontend console and manager tasks
+deluge-console
+
+# add a torrent
+add -p /user/Downloads torrent_magnet_link
+
+# lookup
+info
+
+# usage of deluge-console
+https://whatbox.ca/wiki/Deluge_Console_Documentation
