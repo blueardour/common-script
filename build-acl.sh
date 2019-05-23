@@ -1,6 +1,6 @@
 
 
-TOOLCHAIN=/workspace/soft/r19-ndk-standalone
+TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
 export PATH=$TOOLCHAIN/bin:$PATH
 
 cd /workspace/git/ComputeLibrary
