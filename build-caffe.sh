@@ -72,7 +72,7 @@ config_caffe() {
   export LD_LIBRARY_PATH=/workspace/soft/lib:/usr/local/lib:$LD_LIBRARY_PATH
   cmake .. -DBUILD_SHARED_LIBS=ON -DBUILD_gflags_LIB=ON -DUSE_LEVELDB=OFF \
     -DPROTOBUF_INCLUDE_DIR=/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
-    -DUSE_LEVELDB=OFF -DUSE_HDF5=OFF -DUSE_LMDB=OFF \
+    -DUSE_LEVELDB=OFF -DUSE_HDF5=ON -DUSE_LMDB=OFF \
     -DBOOST_ROOT=/workspace/soft/boost_1_58_0 \
     -DBLAS=open
 }
@@ -91,3 +91,8 @@ caffe_prepare_code_and_dependence() {
   install_boost
   config_caffe
 }
+
+config_caffe
+build_caffe
+
+
