@@ -12,7 +12,7 @@ elif [ "$1" == "run" ]; then
   adb shell $remote/$target
   adb shell ls -lh $remote
   adb shell /data/local/tmp/ai-benchmark/diff $remote/cpu.txt $remote/gpu.txt
-  adb pull $remote
+  #adb pull $remote
 else
   echo "$0 push | run"
 fi
