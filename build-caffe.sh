@@ -49,6 +49,7 @@ install_protobuf () {
     ./autogen.sh
   fi
   git checkout v2.6.1
+  mkdir -p /workspace/soft
   ./configure --prefix /workspace/soft
   make -j8
   make install
@@ -73,8 +74,8 @@ config_caffe() {
   cmake .. -DBUILD_SHARED_LIBS=ON -DBUILD_gflags_LIB=ON -DUSE_LEVELDB=OFF \
     -DPROTOBUF_INCLUDE_DIR=/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
     -DUSE_LEVELDB=OFF -DUSE_HDF5=ON -DUSE_LMDB=OFF \
-    -DBOOST_ROOT=/workspace/soft/boost_1_58_0 \
-    -DBLAS=open
+    -DBLAS=open \
+    #-DBOOST_ROOT=/workspace/soft/boost_1_58_0 \
 }
 
 build_caffe() {
@@ -84,7 +85,10 @@ build_caffe() {
 }
 
 caffe_prepare_code_and_dependence() {
-  #sudo yum install atlas-devel protobuf-devel leveldb-devel snappy-devel opencv-devel boost-devel hdf5-devel 
+  os=`awk -F= '/^NAME/{print $2}' /etc/os-release`
+  if [ "$os" == "Ubuntu" ]; then sudo apt-get install autoconf gcc g++ cmake libboost-all-dev libhdf5-serial-dev libopencv-dev libopenblas-dev; fi
+  if [ "$os" == "Centos" ]; then sudo yum install atlas-devel protobuf-devel leveldb-devel snappy-devel opencv-devel boost-devel hdf5-devel; fi
+
   download_caffe
   install_glog_gflags
   install_protobuf
@@ -92,7 +96,5 @@ caffe_prepare_code_and_dependence() {
   config_caffe
 }
 
-config_caffe
-build_caffe
-
+#caffe_prepare_code_and_dependence
 
