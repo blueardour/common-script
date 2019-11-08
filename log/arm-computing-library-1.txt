@@ -1,0 +1,124 @@
+==> layer info: 
+    width and height: 28, 28
+    cin and cout: 64, 64
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 4335 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 2680 us
+Leaving test_gpu
+==> layer info: 
+    width and height: 56, 56
+    cin and cout: 64, 64
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 6386 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 5418 us
+Leaving test_gpu
+==> layer info: 
+    width and height: 112, 112
+    cin and cout: 64, 64
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 15880 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 8770 us
+Leaving test_gpu
+==> layer info: 
+    width and height: 224, 224
+    cin and cout: 64, 64
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 77096 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 31982 us
+Leaving test_gpu
+==> layer info: 
+    width and height: 448, 448
+    cin and cout: 64, 64
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 494957 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 367798 us
+Leaving test_gpu
+==> layer info: 
+    width and height: 56, 56
+    cin and cout: 16, 16
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 4128 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 1630 us
+Leaving test_gpu
+*** result not match @ 50121: 0.000000 vs 0.008080
+==> layer info: 
+    width and height: 56, 56
+    cin and cout: 32, 32
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 3400 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 1662 us
+Leaving test_gpu
+==> layer info: 
+    width and height: 56, 56
+    cin and cout: 64, 64
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 6393 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 5144 us
+Leaving test_gpu
+==> layer info: 
+    width and height: 56, 56
+    cin and cout: 128, 128
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 15896 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 17950 us
+Leaving test_gpu
+==> layer info: 
+    width and height: 56, 56
+    cin and cout: 256, 256
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 132161 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 112291 us
+Leaving test_gpu
+*** result not match @ 23636: 7.656167 vs 7.656273
+==> layer info: 
+    width and height: 56, 56
+    cin and cout: 512, 512
+    pad, stride, dilation: 1, 1, 1
+    kernel: 3
+Enter test_cpu
+time cost for execution cpu kernel 616071 us
+Leaving test_cpu
+Enter test_gpu
+time cost for execution gpu kernel 524717 us
+Leaving test_gpu
+*** result not match @ 132: -8.248844 vs -8.248708
