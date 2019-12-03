@@ -96,5 +96,5 @@ caffe_prepare_code_and_dependence() {
   config_caffe
 }
 
-caffe_prepare_code_and_dependence
+#caffe_prepare_code_and_dependence
 
