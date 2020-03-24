@@ -1,22 +1,19 @@
 
-remote=/data/local/tmp/acl
-target=neoncl_convolution
+acl_remote=/data/local/tmp/acl
+acl_target=neoncl_convolution
 
 acl-build:
 	bash build-acl.sh
 
 acl-push:
-	adb shell mkdir -p $(remote)
+	adb shell mkdir -p $(acl_remote)
 	cd /workspace/git/ComputeLibrary/build/examples/; \
-	adb push $(target) $(remote); \
+	adb push $(acl_target) $(acl_remote); \
 	cd -
-	adb shell chmod 777 -R $(remote)/
+	adb shell chmod 777 -R $(acl_remote)/$(acl_target)
 
-diff:
-	#adb shell diff $(remote)/cl_ConvolutionLayer.txt $(remote)/neon_ConvolutionLayer.txt
-	adb pull $(remote)/gpu.txt .
-	adb pull $(remote)/cpu.txt .
-	vimdiff gpu.txt cpu.txt
+acl-run:
+	adb shell $(acl_remote)/$(acl_target)
 
 ncnn_remote=/data/local/tmp/ncnn
 ncnn-push:
