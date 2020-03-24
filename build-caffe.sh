@@ -78,6 +78,8 @@ config_caffe() {
     #-DBUILD_gflags_LIB=ON \
     #-DBOOST_ROOT=/workspace/soft/boost_1_58_0 \
     # note: not require the last three lines anymore
+
+  cd /workspace/git/scripts
 }
 
 build_caffe() {
