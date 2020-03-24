@@ -2,8 +2,10 @@
 acl_remote=/data/local/tmp/acl
 acl_target=neoncl_convolution
 
+-include ../ai-benchmark/script/dvfs.mk
+
 acl-build:
-	bash build-acl.sh
+	bash build-acl-example.sh
 
 acl-push:
 	adb shell mkdir -p $(acl_remote)

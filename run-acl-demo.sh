@@ -1,4 +1,6 @@
 
+if [ -e env.sh ]; then source env.sh; fi
+
 remote=/data/local/tmp/acl
 target=neoncl_convolution
 if [ "$devices" != "" ]; then device="-s $devices"; fi
