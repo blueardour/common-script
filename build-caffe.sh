@@ -94,6 +94,7 @@ caffe_prepare_code_and_dependence() {
   if [ "$os" == "Centos" ]; then sudo yum install atlas-devel protobuf-devel leveldb-devel snappy-devel opencv-devel boost-devel hdf5-devel; fi
 
   download_caffe
+  # consider add: add_compile_options(-std=c++11)
   install_glog_gflags
 
   # can not link correctly on current machine, use system installed one (3.0.0)
