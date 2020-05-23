@@ -18,8 +18,10 @@ onnx_repo=/data/pretrained/onnx/fcos/
 pytorch_repo=/data/pretrained/pytorch/fcos/
 ncnn_repo=/data/pretrained/ncnn/fcos/
 
-config=configs/FCOS-Detection/FCOS_RT/MS_R_50_4x_syncbn_bn_head.yaml
-case=FCOS_RT_MS_R_50_4x_syncbn_bn_head
+config=configs/BlendMask/RT_R_50_4x-BN-head.yaml
+case=blendmask-bn-head
+height=640
+width=428
 
 if [ ! -e $onnx_repo/$case.onnx ] || [ "$update" != "" ];
 then
