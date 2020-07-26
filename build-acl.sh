@@ -1,6 +1,5 @@
-
-
-TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
+#TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
+TOOLCHAIN=/workspace/soft/cross-compile/aarch64-linux-android-ndk
 export PATH=$TOOLCHAIN/bin:$PATH
 echo $PATH
 
