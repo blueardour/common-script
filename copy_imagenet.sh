@@ -41,3 +41,8 @@ do
     continue
   fi
 done
+
+train=`find $src/train/ -name "*.JPEG" | wc -l`
+val=`find $src/val/ -name "*.JPEG" | wc -l`
+echo "get $train, expected 1281167. get $val, expected 50000"
+
