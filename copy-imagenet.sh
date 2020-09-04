@@ -1,10 +1,15 @@
 
 src=/data/imagenet/
-dst=/media/Windows-C/training-data/data/imagenet
+dst=/media/Windows-F/training-data/data/imagenet
 folders=`ls $src/train`
 
-mkdir $src/train-back -p
-mkdir $dst/train -p
+split='train'
+if [ "$2" != "" ]
+then
+  split=$2
+fi
+mkdir $src/$split-back -p
+mkdir $dst/$split -p
 
 count=10
 if [ "$1" != "" ]
@@ -26,17 +31,17 @@ do
     index=`expr $index + 1`
     continue
   else
-    echo "copying $src/train/$file to $dst/train/"
-    cp -r $src/train/$file $dst/train/
-    if [ -d $src/train-back/$file ]
+    echo "copying $src/$split/$file to $dst/$split/"
+    cp -r $src/$split/$file $dst/$plsit/
+    if [ -d $src/$split-back/$file ]
     then
-      cp -r $src/train/$file $src/train-back/
+      cp -r $src/$split/$file $src/$split-back/
     else
-      mv $src/train/$file $src/train-back/
+      mv $src/$split/$file $src/$split-back/
     fi
 
-    echo "linking to $src/train/$file from $dst/train/"
-    cd $src/train && ln -s $dst/train/$file . && cd -
+    echo "linking to $src/$split/$file from $dst/$split/"
+    cd $src/$split && ln -s $dst/$split/$file . && cd -
     index=`expr $index + 1`
     continue
   fi

@@ -27,6 +27,9 @@ install_glog_gflags() {
   ./configure
   make -j8
   sudo make install
+
+  # scripts
+  cd /workspace/git/scripts/
 }
 
 install_lmdb() {
@@ -74,7 +77,7 @@ config_caffe() {
   cmake .. -DBUILD_SHARED_LIBS=ON -DUSE_LEVELDB=OFF \
     -DUSE_LEVELDB=OFF -DUSE_HDF5=ON -DUSE_LMDB=OFF \
     -DBLAS=open \
-    #-DPROTOBUF_INCLUDE_DIR=/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
+    -DPROTOBUF_INCLUDE_DIR=/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
     #-DBUILD_gflags_LIB=ON \
     #-DBOOST_ROOT=/workspace/soft/boost_1_58_0 \
     # note: not require the last three lines anymore
