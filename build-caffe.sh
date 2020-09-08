@@ -61,21 +61,26 @@ install_boost()
   cd /workspace/soft
   if [ ! -f boost_1_58_0.tar.gz ]; then wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz; fi
   if [ ! -d boost_1_58_0 ]; then tar xvf boost_1_58_0.tar.gz; fi
+  if [ ! -f boost_1_67_0.tar.gz ]; then wget https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.gz; fi
+  if [ ! -d boost_1_67_0 ]; then tar xvf boost_1_67_0.tar.gz; fi
   cd -
 }
 
 config_caffe() {
-  cd /workspace/git/caffe
+  pushd /workspace/git/caffe
   rm -rf build
   mkdir -p build
   cd build
   export PATH=/workspace/soft/bin:$PATH
   export LD_LIBRARY_PATH=/workspace/soft/lib:/usr/local/lib:$LD_LIBRARY_PATH
   cmake .. -DBUILD_SHARED_LIBS=ON -DBUILD_gflags_LIB=ON -DUSE_LEVELDB=OFF \
-    -DPROTOBUF_INCLUDE_DIR=/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
     -DUSE_LEVELDB=OFF -DUSE_HDF5=ON -DUSE_LMDB=OFF \
     -DBLAS=open \
+    #-DPYTHON_LIBRARIES=/home/chenp/.pyenv/versions/2.7.16/lib \
+    #-DPYTHON_INCLUDE_DIRS=/home/chenp/.pyenv/versions/2.7.16/include
     #-DBOOST_ROOT=/workspace/soft/boost_1_58_0 \
+    #-DPROTOBUF_INCLUDE_DIR=/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
+  popd
 }
 
 build_caffe() {
