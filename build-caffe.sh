@@ -27,6 +27,9 @@ install_glog_gflags() {
   ./configure
   make -j8
   sudo make install
+
+  # scripts
+  cd /workspace/git/scripts/
 }
 
 install_lmdb() {
@@ -67,20 +70,20 @@ install_boost()
 }
 
 config_caffe() {
-  pushd /workspace/git/caffe
-  rm -rf build
+  cd /workspace/git/caffe
+  #rm -rf build
   mkdir -p build
   cd build
   export PATH=/workspace/soft/bin:$PATH
   export LD_LIBRARY_PATH=/workspace/soft/lib:/usr/local/lib:$LD_LIBRARY_PATH
-  cmake .. -DBUILD_SHARED_LIBS=ON -DBUILD_gflags_LIB=ON -DUSE_LEVELDB=OFF \
+  cmake .. -DBUILD_SHARED_LIBS=ON -DUSE_LEVELDB=OFF \
     -DUSE_LEVELDB=OFF -DUSE_HDF5=ON -DUSE_LMDB=OFF \
     -DBLAS=open \
-    #-DPYTHON_LIBRARIES=/home/chenp/.pyenv/versions/2.7.16/lib \
-    #-DPYTHON_INCLUDE_DIRS=/home/chenp/.pyenv/versions/2.7.16/include
+    -DPROTOBUF_INCLUDE_DIR=/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
+    #-DBUILD_gflags_LIB=ON \
     #-DBOOST_ROOT=/workspace/soft/boost_1_58_0 \
-    #-DPROTOBUF_INCLUDE_DIR=/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
-  popd
+    # note: not require the last three lines anymore
+  cd /workspace/git/scripts
 }
 
 build_caffe() {
@@ -95,9 +98,14 @@ caffe_prepare_code_and_dependence() {
   if [ "$os" == "Centos" ]; then sudo yum install atlas-devel protobuf-devel leveldb-devel snappy-devel opencv-devel boost-devel hdf5-devel; fi
 
   download_caffe
+  # consider add: add_compile_options(-std=c++11)
   install_glog_gflags
-  install_protobuf
-  install_boost
+
+  # can not link correctly on current machine, use system installed one (3.0.0)
+  # the reason may be the std=c++11 in new version gcc
+  #install_protobuf
+
+  #install_boost  # not reuqire on current machine
   config_caffe
 }
 
