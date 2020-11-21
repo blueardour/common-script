@@ -1,5 +1,18 @@
 
-update=$1
+if [ "$1" == "update" ];
+then
+  update='update'
+else
+  update=
+fi
+
+if [ "$1" == "test" ];
+then
+  onnx_rt='test'
+else
+  onnx_rt=
+fi
+
 caffe_repo=/data/pretrained/caffe/fcos/
 onnx_repo=/data/pretrained/onnx/fcos/
 pytorch_repo=/data/pretrained/pytorch/fcos/
@@ -56,4 +69,18 @@ then
     echo "Convert failed"
   fi
 fi
+
+if [ "$onnx_rt" == "test" ];
+then
+  cd /workspace/git/uofa-AdelaiDet/ # folder of project https://github.com/aim-uofa/AdelaiDet
+  pwd
+  python -V # ensure python3.x
+  python onnx/test_onnxruntime.py \
+    --config-file $config \
+    --output $onnx_repo/$case.onnx \
+    --width 768 --height 640 \
+    --opts MODEL.WEIGHTS $pytorch_repo/$case.pth MODEL.FCOS.NORM "BN" MODEL.DEVICE cpu
+  if [ $? -ne 0 ]; then exit; fi
+fi
+
 

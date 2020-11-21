@@ -26,8 +26,8 @@ class Test(nn.Module):
 
     def forward(self, x):
         #return F.interpolate(x, size=(400, 600), mode='bilinear', align_corners=False) #no warning, all clear
-        return F.interpolate(x, size=(400, 600), mode='bilinear') #no warning, all clear
-        #return F.interpolate(x, size=(400, 600), mode='nearest') #no warning, all clear
+        #return F.interpolate(x, size=(400, 600), mode='bilinear') #no warning, all clear
+        return F.interpolate(x, size=(400, 600), mode='nearest') #no warning, all clear
 
 model = Test()
 x = torch.rand((1, 3, 200, 300))
