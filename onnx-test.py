@@ -19,6 +19,24 @@ import numpy as np
 #onnx.checker.check_model(onnx_model)    
 #print("ok")
 
+####
+# pip install onnx=1.5.0 onnxruntime
+# cd ~/workspace/git && git clone 
+import sys, os
+workspace='~/workspace/git/onnx-simplifier'
+sys.path.insert(0, workspace)
+
+import onnx
+print(onnx.__version__)
+
+import onnxsim
+print(onnxsim.__version__)
+
+onnx_path='output.onnx'
+onnx_model = onnxsim.simplify(onnx_path)
+onnx.save(onnx_model, onnx_path.replace('.onnx', '-update.onnx'))
+###
+
 
 class Test(nn.Module):
     def __init__(self):
