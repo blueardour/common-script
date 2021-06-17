@@ -20,12 +20,11 @@ install_glog_gflags() {
 
   # glog
   cd ~/workspace/downloads/
-  if [ ! -e v0.3.3.tar.gz ]; then wget https://github.com/google/glog/archive/v0.3.3.tar.gz; fi
-  if [ ! -d glog-0.3.3 ]; then tar zxvf v0.3.3.tar.gz; fi
-  cd glog-0.3.3
-  export LD_LIBRARY_PATH='/usr/local/lib'
+  if [ ! -e v0.3.4.tar.gz ]; then wget https://github.com/google/glog/archive/v0.3.4.tar.gz; fi
+  if [ ! -d glog-0.3.4 ]; then tar zxvf v0.3.4.tar.gz; fi
+  cd glog-0.3.4
   ./configure
-  make -j8
+  make -j6
   sudo make install
 
 }
@@ -77,7 +76,8 @@ config_caffe() {
   cmake .. -DBUILD_SHARED_LIBS=ON -DUSE_LEVELDB=OFF \
     -DUSE_LEVELDB=OFF -DUSE_HDF5=ON -DUSE_LMDB=OFF \
     -DBLAS=open \
-    -DPROTOBUF_INCLUDE_DIR=$HOME/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
+    #-DPROTOBUF_INCLUDE_DIR=$HOME/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
+    #-DCPU_ONLY=ON \
     #-DBUILD_gflags_LIB=ON \
     #-DBOOST_ROOT=/workspace/soft/boost_1_58_0 \
     # note: not require the last three lines anymore
