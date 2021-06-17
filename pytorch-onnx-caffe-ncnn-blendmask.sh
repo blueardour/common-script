@@ -15,8 +15,9 @@ fi
 
 FASTDIR=~/workspace
 
-pytorch_model=/data/pretrained/pytorch/AdelaiDet/download/RT_R_50_4x_bn-head_syncbn_shtw.pth
-onnx_repo=/data/pretrained/onnx/AdelaiDet
+# https://cloudstor.aarnet.edu.au/plus/s/hI15l4ChWFqWvHp/download
+pytorch_model=$PWD/weights/RT_R_50_4x_bn-head_syncbn_shtw.pth
+onnx_repo=$PWD/weights/
 
 config=configs/BlendMask/RT_R_50_4x_bn-head_syncbn_shtw.yaml
 case=blendmask-bn-head
@@ -36,12 +37,16 @@ then
   if [ $? -ne 0 ]; then exit; fi
 fi
 
+exit
+
 if [ ! -e $onnx_repo/$case-update.onnx ] || [ "$update" != "" ];
 then
   # advise version 1.3.0
-  cd $FASTDIR/git/onnx-simplifier  # folder of project: git clone https://github.com/daquexian/onnx-simplifier && cd onnx-simplifier && git checkout v1.3.0
+  cd $FASTDIR/git/onnx-simplifier  # folder of project: git clone https://github.com/daquexian/onnx-simplifier && cd onnx-simplifier && git checkout 0.1.3
   pwd
   python -V # ensure python3.x
+  #python -c 'import onnsim; print("onnxsim version", __version__)'
+  pip show onnx
   python -m onnxsim $onnx_repo/$case.onnx $onnx_repo/$case-update.onnx
   if [ $? -ne 0 ]; then exit; fi
 fi

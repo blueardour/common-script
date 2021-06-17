@@ -1,13 +1,13 @@
 
 download_caffe() {
-  cd /workspace/git
+  cd ~/workspace/git
   if [ ! -d caffe ]; then git clone https://github.com/BVLC/caffe; fi
   cd -
 }
 
 install_glog_gflags() {
   # gflags
-  cd /workspace/downloads/
+  cd ~/workspace/downloads/
   if [ ! -e master.zip ]; then wget https://github.com/schuhschuh/gflags/archive/master.zip; fi
   if [ ! -d gflags-master ]; then unzip master.zip; fi
   cd gflags-master
@@ -19,7 +19,7 @@ install_glog_gflags() {
   cd -
 
   # glog
-  cd /workspace/downloads/
+  cd ~/workspace/downloads/
   if [ ! -e v0.3.3.tar.gz ]; then wget https://github.com/google/glog/archive/v0.3.3.tar.gz; fi
   if [ ! -d glog-0.3.3 ]; then tar zxvf v0.3.3.tar.gz; fi
   cd glog-0.3.3
@@ -28,13 +28,11 @@ install_glog_gflags() {
   make -j8
   sudo make install
 
-  # scripts
-  cd /workspace/git/scripts/
 }
 
 install_lmdb() {
   # lmdb
-  cd /workspace/git
+  cd ~/workspace/git
   git clone https://github.com/LMDB/lmdb
   cd lmdb/libraries/liblmdb
   make
@@ -43,7 +41,7 @@ install_lmdb() {
 }
 
 install_protobuf () {
-  cd /workspace/git
+  cd ~/workspace/git
   if [ ! -d protobuf ]; then git clone https://github.com/protocolbuffers/protobuf; fi
   cd protobuf
   if [ ! -f configure ]; then
@@ -52,8 +50,8 @@ install_protobuf () {
     ./autogen.sh
   fi
   git checkout v2.6.1
-  mkdir -p /workspace/soft
-  ./configure --prefix /workspace/soft
+  mkdir -p ~/workspace/soft
+  ./configure --prefix ~/workspace/soft
   make -j8
   make install
   cd -
@@ -61,7 +59,7 @@ install_protobuf () {
 
 install_boost()
 {
-  cd /workspace/soft
+  cd ~/workspace/soft
   if [ ! -f boost_1_58_0.tar.gz ]; then wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz; fi
   if [ ! -d boost_1_58_0 ]; then tar xvf boost_1_58_0.tar.gz; fi
   if [ ! -f boost_1_67_0.tar.gz ]; then wget https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.gz; fi
@@ -70,24 +68,23 @@ install_boost()
 }
 
 config_caffe() {
-  cd /workspace/git/caffe
+  cd ~/workspace/git/caffe
   #rm -rf build
   mkdir -p build
   cd build
-  export PATH=/workspace/soft/bin:$PATH
-  export LD_LIBRARY_PATH=/workspace/soft/lib:/usr/local/lib:$LD_LIBRARY_PATH
+  export PATH=$HOME/workspace/soft/bin:$PATH
+  export LD_LIBRARY_PATH=$HOME/workspace/soft/lib:/usr/local/lib:$LD_LIBRARY_PATH
   cmake .. -DBUILD_SHARED_LIBS=ON -DUSE_LEVELDB=OFF \
     -DUSE_LEVELDB=OFF -DUSE_HDF5=ON -DUSE_LMDB=OFF \
     -DBLAS=open \
-    -DPROTOBUF_INCLUDE_DIR=/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
+    -DPROTOBUF_INCLUDE_DIR=$HOME/workspace/soft/include -DPROTOBUF_LIBRARY=/workspace/soft/lib/libprotobuf.so \
     #-DBUILD_gflags_LIB=ON \
     #-DBOOST_ROOT=/workspace/soft/boost_1_58_0 \
     # note: not require the last three lines anymore
-  cd /workspace/git/scripts
 }
 
 build_caffe() {
-  cd /workspace/git/caffe/build
+  cd ~/workspace/git/caffe/build
   make -j8
   cd -
 }
